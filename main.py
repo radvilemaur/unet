@@ -3,7 +3,6 @@ from data import *
 
 #os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
-
 data_gen_args = dict()
 myGene = trainGenerator(2,'data/membrane/train','image','label',data_gen_args,save_to_dir = None)
 
