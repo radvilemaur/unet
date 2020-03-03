@@ -9,6 +9,14 @@ from keras.optimizers import *
 from keras.callbacks import ModelCheckpoint, LearningRateScheduler
 from keras import backend as keras
 
+####implementing dice loss
+
+def dice_loss(y_true, y_pred):
+ numerator = 2 * tf.reduce_sum(y_true * y_pred, axis=(1,2,3))
+ denominator = tf.reduce_sum(y_true + y_pred, axis=(1,2,3))
+ return 1 - numerator / denominator
+
+#####
 
 def unet(pretrained_weights = None,input_size = (256,256,1)): #added batchnormalization layers after each convolutional layer; 
     inputs = Input(input_size)
@@ -73,7 +81,7 @@ def unet(pretrained_weights = None,input_size = (256,256,1)): #added batchnormal
 
     model = Model(input = inputs, output = conv10)
 
-    model.compile(optimizer = Adam(lr = 1e-4), loss = 'binary_crossentropy', metrics = ['accuracy'])
+    model.compile(optimizer = Adam(lr = 1e-4), loss = dice_loss , metrics = ['accuracy']) #changing to dice loss
 
     #model.summary()
 
