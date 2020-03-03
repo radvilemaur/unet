@@ -86,7 +86,7 @@ def unet(pretrained_weights = None,input_size = (256,256,1)): #added batchnormal
 
     model = Model(input = inputs, output = conv10)
 
-    model.compile(optimizer = Adam(lr = 1e-4), loss = dice_loss , metrics = ['accuracy']) #changing to dice loss
+    model.compile(optimizer = Adam(lr = 1e-4), loss = dice_loss , metrics = ['accuracy', dice_coefficient]) #changing to dice loss
 
     #model.summary()
 
