@@ -11,5 +11,5 @@ model_checkpoint = ModelCheckpoint('unet_membrane.hdf5', monitor='loss',verbose=
 model.fit_generator(myGene,steps_per_epoch=300,epochs=5,callbacks=[model_checkpoint])
 
 testGene = testGenerator("data/membrane/test")
-results = model.predict_generator(testGene,15,verbose=1) #change 30 to 15 for 15 test images in my data set
+results = model.predict_generator(testGene,30,verbose=1) 
 saveResult("data/membrane/test",results)
